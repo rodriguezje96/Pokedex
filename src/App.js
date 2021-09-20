@@ -1,30 +1,46 @@
 import { useState, useEffect } from 'react';
+import PokemonList from './PokemonList';
+import Pagination from './Pagination';
+import axios from 'axios';
 
 function App() {
 
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [more, setMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20');
+  const [pokemon, setPokemon] = useState([]);
+  const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon')
+  const [nextPageUrl, setNextPageUrl] = useState()
+  const [prevPageUrl, setPrevPageUrl] = useState()
 
-  const getPokemons = async () => {
-    const res = await fetch(more);
-    const data = await res.json();
+  useEffect(() => {
+    let cancel
+    axios.get(currentPageUrl, {
+      cancelToken: new axios.CancelToken(c => cancel = c)
+    }).then(res => {
+      setNextPageUrl(res.data.next)
+      setPrevPageUrl(res.data.previous)
+      setPokemon(res.data.results.map(p => p.name))
+    })
 
-    setMore(data.next);
-    console.log(data);
+    return () => cancel()
+
+  }, [currentPageUrl])
+
+
+  function goToNextPage() {
+    setCurrentPageUrl(nextPageUrl)
   }
 
-useEffect (() => {
-  getPokemons();
-}, []);
+  function goToPrevPage() {
+    setCurrentPageUrl(prevPageUrl)
+  }
 
   return (
-    <div className="app-container">
-      <h1>Welcome to my Pokedex</h1>
-      <div className="pokemon-container">
-        <div className="all-container"></div>
-      </div>
-      <button className="more">Load More</button>
-    </div>
+    <>
+      <PokemonList pokemon={pokemon} />
+      <Pagination
+        goToNextPage={goToNextPage}
+        goToPrevPage={goToPrevPage}
+      />
+  </>
   );
 }
 
