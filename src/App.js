@@ -17,7 +17,7 @@ function App() {
     }).then(res => {
       setNextPageUrl(res.data.next)
       setPrevPageUrl(res.data.previous)
-      setPokemon(res.data.results.map(p => p.name))
+      setPokemon(res.data.results)
     })
 
     return () => cancel()
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <PokemonList pokemon={pokemon} />
+      <PokemonList pokemon={pokemon}  />
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
         goToPrevPage={prevPageUrl ? goToPrevPage : null}
