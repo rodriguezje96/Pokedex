@@ -1,0 +1,8 @@
+.card-container {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: row;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}

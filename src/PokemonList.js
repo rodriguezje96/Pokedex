@@ -7,11 +7,7 @@ function PokemonList({ pokemons }) {
     return (
         <div>
             {pokemons?.map(pokemon => (
-                <PokemonsCards
-                    id={pokemon.id}
-                    name={pokemon.name}
-                    image={pokemon.sprites.other.dream_world.front_default}
-                    type={pokemon.types[0].type.name}
+                <PokemonsCards url={pokemon.url}
                 />
             ))}
         </div>
