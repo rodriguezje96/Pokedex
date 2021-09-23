@@ -5,7 +5,7 @@ function PokemonList({ pokemons }) {
     console.log(pokemons);
 
     return (
-        <div>
+        <div className="row container mx-auto">
             {pokemons?.map(pokemon => (
                 <PokemonsCards url={pokemon.url}
                 />

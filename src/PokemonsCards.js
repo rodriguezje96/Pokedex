@@ -10,7 +10,7 @@ export const PokemonsCards = ({ url }) => {
     if (!pokemon) return "Loading....";
 
     return (
-        <div className="base">
+        <div className="base col-8 col-lg-4 mx-auto">
             <div classname="wrapper row">
                 <div className="card">
                     <div className="id">
