@@ -1,8 +1,38 @@
-.app-container {
-    width: 640px;
-    height: 640px;
-    margin: auto;
-    display: row;
-    flex-wrap: wrap;
-    perspective: 1000px;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
+
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: auto;
+    position: relative;
+    border: 2px solid rgb(105, 25, 4);
+}
+
+.card {
+    width: 20%;
+    height: 20%;
+    background-color: rgb(67, 199, 166);
+    margin: 5px;
+    color: rgb(64, 11, 255);
+    justify-content: center;
+    padding: 20px;
+    object-fit: contain;
+    margin-right: 10px;
+    transition: transform 450ms;
+}
+
+.card {
+    margin: 4px 10px;
+}
+
+.card:hover {
+    transform: scale(1.08);
+    transition: 1s;
+}
+ 
