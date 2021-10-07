@@ -2,11 +2,12 @@ import React from 'react'
 import PokemonList from './PokemonList';
 import useAPI from './hooks/useAPI';
 import 'bootstrap/dist/css/bootstrap.css';
+import PokeInfo from './PokeInfo';
 
 
 export const PokemonsCards = ({ url }) => {
     const pokemon = useAPI(url);
-
+    const modal = PokeInfo();
     if (!pokemon) return "Loading....";
 
     return (
@@ -25,6 +26,7 @@ export const PokemonsCards = ({ url }) => {
                         <p>Type: {pokemon.types[0].type.name}</p>
                     </div>
                     <a href="#" class="btn btn-primary btn-sm">+</a>
+                    <Button onclick={() => modal.handleModal()}></Button>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true)
-   let cancel
+    let cancel
     axios.get(currentPageUrl, {
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
@@ -29,7 +29,7 @@ function App() {
 
   }, [currentPageUrl])
 
-if (loading) return "Loading...";
+  if (loading) return "Loading...";
 
   function goToNextPage() {
     setCurrentPageUrl(nextPageUrl)
@@ -41,15 +41,15 @@ if (loading) return "Loading...";
 
   return (
     <>
-    <div className="header">
-      <h1 className="title">Welcome to the Pokedex</h1>
-    </div>
-      <PokemonList pokemons={pokemon}  />
+      <div className="header">
+        <h1 className="title">Welcome to the Pokedex</h1>
+      </div>
+      <PokemonList pokemons={pokemon} />
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
         goToPrevPage={prevPageUrl ? goToPrevPage : null}
       />
-  </>
+    </>
   );
 }
 
